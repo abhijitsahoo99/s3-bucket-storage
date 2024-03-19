@@ -1,7 +1,18 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const HomePage = () => {
+// Define the types for your navigation stack
+type RootStackParamList = {
+  Home: undefined; // Add other screens as needed, e.g., 'Scan': undefined;
+  Scan: undefined;
+};
+
+type HomePageProps = {
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+};
+
+const HomePage: React.FC<HomePageProps>= ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/* Logo and Text */}
@@ -10,7 +21,7 @@ const HomePage = () => {
                 <Text style={styles.descriptionText}>Share uncompressed files with a perma-link</Text>
             </View>
             {/* Button */}
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate("Scan")} style={styles.button}>
                 <Text style={styles.buttonText}>Connect to a bucket</Text>
             </TouchableOpacity>
         </View>
@@ -31,14 +42,13 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     logoText: {
-        fontFamily: 'KumbhSans-Regular',
+        fontFamily: 'KumbhSans-Bold',
         fontSize: 50,
-        fontWeight: 'bold',
         marginLeft: 30,
         marginBottom: 10
     },
     descriptionText: {
-        fontSize: 25,
+        fontSize: 23,
         fontFamily: 'InriaSerif-Regular',
         marginLeft: 30,
     },
@@ -49,11 +59,12 @@ const styles = StyleSheet.create({
         borderRadius : 10,
         alignItems: 'center',
         paddingLeft: 75,
-        paddingRight: 75
+        paddingRight: 75,
     },
     buttonText : {
         fontSize : 22,
         color : '#4b4b4b',
+        fontFamily: 'InriaSerif-Regular',
     }
 });
 export default HomePage;

@@ -3,11 +3,11 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
 
-export default function SplashScreen() {
+const SplashScreen: React.FC = () => {
   useEffect(() => {
     async function loadFonts() {
       await Font.loadAsync({
-        'KumbhSans-Regular': require('../assets/fonts/KumbhSans-Regular.ttf'),
+        'KumbhSans-Bold': require('../assets/fonts/KumbhSans-Bold.ttf'),
       });
     }
 
@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontFamily: 'KumbhSans-Regular',
-    fontSize: 64,
-    fontWeight: 'bold'
+    fontFamily: 'KumbhSans-Bold',
+    fontSize: 60,
   },
 });
+
+export default SplashScreen;
